@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--settings：控制mybatis全局行为-->
+    <settings>
+<!--        &lt;!&ndash;驼峰设置&ndash;&gt;-->
+<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
+        <!--设置mybatis输出日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--设置别名-->
+    <typeAliases>
+        <!--name:实体类所在的包名-->
+        <package name="com.atguigu.bean"/>
+    </typeAliases>
+
+    <!--plugins标签要放在typeAliases标签后面-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--分页合理化，如果pageNum > pages，就让他查询最后一页。如果pageNum < 0，就查询第一页-->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+
+    <!--sql mapper(sql映射文件)的位置-->
+    <mappers>
+        <!--name:是包名，这个包中所有的mapper.xml一次都能加载-->
+        <package name="com.atguigu.dao"/>
+    </mappers>
+</configuration>
